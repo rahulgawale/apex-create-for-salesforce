@@ -1,7 +1,7 @@
 {
 	"name": "apex-create-for-salesforce",
 	"displayName": "Apex Create for Salesforce",
-	"description": "Helper extension for Apex code developers. This extention commonly provides code snippets for Apex.",
+	"description": "Helper extension for Apex code developers. This extension commonly provides code snippets for Apex.",
 	"version": "0.0.1",
 	"engines": {
 		"vscode": "^1.80.0"
