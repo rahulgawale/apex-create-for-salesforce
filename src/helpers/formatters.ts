@@ -2,14 +2,21 @@ import prettier from "prettier";
 
 import extensionConfig from "./extensionConfig";
 import getPrettierConfig from "./getPrettierConfig";
-import {replaceSnippetPlaceholders, revertSnippetPlaceholders} from "./snippetPlaceholders";
+import {
+	replaceSnippetPlaceholders,
+	revertSnippetPlaceholders,
+} from "./snippetPlaceholders";
 
-export const formatSnippet = (snippetString: string) => {
-	return extensionConfig().prettierEnabled ? prettier.format(snippetString, getPrettierConfig()) : snippetString;
+export const formatSnippet = async (snippetString: string) => {
+	return extensionConfig().prettierEnabled
+		? await prettier.format(snippetString, getPrettierConfig())
+		: snippetString;
 };
 
-export const parseSnippet = (body: string | string[]) => {
+export const parseSnippet = async (body: string | string[]) => {
 	const snippetBody = typeof body === "string" ? body : body.join("\n");
 
-	return replaceSnippetPlaceholders(formatSnippet(revertSnippetPlaceholders(snippetBody)));
+	return replaceSnippetPlaceholders(
+		await formatSnippet(revertSnippetPlaceholders(snippetBody))
+	);
 };
